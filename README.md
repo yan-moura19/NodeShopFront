@@ -1,16 +1,14 @@
 # nodeshop_front
 
-A new Flutter project.
+ [Clique aqui para ver a API usada nesse projeto](https://github.com/yan-moura19/NodeShop)
 
-## Getting Started
+### Instalar dependencias do projeto
 
-This project is a starting point for a Flutter application.
+```
+ abrir o arquivo pubspec.yaml e salvar (CTRL + S) o arquivo para que os plugins sejam baixados
+```
+### Rodar aplicação
+```
+flutter run --web-renderer html
+```
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

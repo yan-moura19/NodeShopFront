@@ -90,6 +90,7 @@ class CarrinhoPage extends StatelessWidget {
     if(response.statusCode == 200){
       print("Compra efetuada");
       
+      
     }else{
       throw Exception('Não foi possivel finalizar a compra');
     }

@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:nodeshop_front/pages/carrinho_page.dart';
+import 'package:nodeshop_front/pages/produtosFiltrados_page.dart';
 import 'package:nodeshop_front/widgets/app_text.dart';
 
 
@@ -14,7 +15,9 @@ class ProdutosPage extends StatelessWidget {
    final String? nomeUser;
    final _tCategoria = TextEditingController();
 
+    var produtos = [];
    var carrinho = [];
+   var produtosFiltrados = [];
 
   
   @override
@@ -53,7 +56,9 @@ class ProdutosPage extends StatelessWidget {
                               
                             ),
                             ),),
-                            IconButton(onPressed:() => {print(_tCategoria.text)}, icon: const Icon(Icons.search))
+                            IconButton(onPressed:() => {Navigator.push(context, MaterialPageRoute(
+            builder: (context) => ProdutoFiltradoPage(produtosFiltrados: produtosFiltrados, carrinho: carrinho, nomeUser: '${nomeUser}',filtro: _tCategoria.text) ,
+          ),),filtraProdutos()}, icon: const Icon(Icons.search))
                            
                       
                             
@@ -74,7 +79,9 @@ class ProdutosPage extends StatelessWidget {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  var produto = snapshot.data![index];
+                  produtos =  snapshot.data!;
+
+                var produto = snapshot.data![index];
                 return Card( child: ListTile(
                   
                   onTap: (() {
@@ -175,6 +182,20 @@ class ProdutosPage extends StatelessWidget {
     }else{
       throw Exception('Não foi possivel pegar os produtos');
     }
+  }
+  filtraProdutos() async{
+    
+    for(var product in produtos){
+      
+      if(product['categoria'] == _tCategoria.text){
+        
+        
+        produtosFiltrados.add(product);
+      }
+
+    }
+    
+    
   }
   showAlertDialog1(BuildContext context, String nome) 
 { 

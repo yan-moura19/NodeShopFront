@@ -60,7 +60,8 @@ class CarrinhoPage extends StatelessWidget {
                   ButtonBar(
                     children: [
                       TextButton(onPressed: () => {
-                         showAlertDialog1(context, valor,)
+                         showAlertDialog1(context, valor,),
+                         postCompra(valor, carrinho)
                          }, child: Text("Finalizar compra")),
 
                     ],
@@ -76,13 +77,15 @@ class CarrinhoPage extends StatelessWidget {
         
       );
   }
-  postCompra(valor) async{
+  postCompra(valor, carrinho) async{
     var url = Uri.parse('http://localhost:3030/compra');
     final encoding = Encoding.getByName('utf-8');
-    final headers = {'Content-Type': 'application/json'};
+    final headers = <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
     var body = jsonEncode(<String, String>{
       'usuario' : 'YanApp',
-      'produtos':'produtos',
+      'produtos': jsonEncode(carrinho),
       'valor': '105',
     });
     var response = await http.post(url, body: body, encoding: encoding, headers: headers

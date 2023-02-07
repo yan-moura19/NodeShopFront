@@ -51,7 +51,7 @@ class ProdutosPage extends StatelessWidget {
                               controller: _tCategoria,
                               decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Categoria',
+                              labelText: 'Digite a categoria ou nome',
                               
                               
                             ),
@@ -190,6 +190,8 @@ class ProdutosPage extends StatelessWidget {
       if(product['categoria'] == _tCategoria.text){
         
         
+        produtosFiltrados.add(product);
+      }else if(product['nome'].contains(_tCategoria.text) ){
         produtosFiltrados.add(product);
       }
 

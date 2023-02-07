@@ -184,6 +184,7 @@ class ProdutosPage extends StatelessWidget {
     }
   }
   filtraProdutos() async{
+    produtosFiltrados = [];
     
     for(var product in produtos){
       

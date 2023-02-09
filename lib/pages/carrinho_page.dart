@@ -45,7 +45,7 @@ actions: [
     ],
   ),
   body: Column(children: <Widget>[
-    Text("${widget.carrinho.length > 0? 'ITENS':'Adcione produtos ao seu carrinho'}",
+    Text("${widget.carrinho.length > 0? 'ITENS':'Adicione produtos ao seu carrinho'}",
     textAlign: TextAlign.center, 
     
     style:  GoogleFonts.inter(

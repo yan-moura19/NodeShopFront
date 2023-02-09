@@ -6,9 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
-class CarrinhoPage extends StatelessWidget {
-  
-  
+class CarrinhoPage extends StatefulWidget {
   
   CarrinhoPage({super.key, required this.carrinho, this.string, required String this.nomeUser});
 
@@ -16,87 +14,97 @@ class CarrinhoPage extends StatelessWidget {
   final String? string;
   final String? nomeUser;
   
- 
+  @override
+  _CarrinhoPageState createState() => _CarrinhoPageState();
+}
+
+class _CarrinhoPageState extends State<CarrinhoPage> {
   
+  double valor = 0;
+
+  void limparLista() {
+    setState(() {
+      widget.carrinho.clear();
+      valor = 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    double valor = 0;
-    for(var val in carrinho){
-      //print(val['preco']);
+    for(var val in widget.carrinho){
       valor = valor + double.parse( val['preco']);
     }
-    //print(valor);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Carrinho'),
-        backgroundColor: Color.fromARGB(255, 8, 39, 87),
-        actions: [
-          
-        
-        SizedBox(width: 30,)
-        
-        ],
-      ),
-      body: Column(children: <Widget>[
-        Text("ITENS",
-        textAlign: TextAlign.end, 
-        
-        style:  GoogleFonts.inter(
-                  color:  Color.fromARGB(255, 8, 39, 87),
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  
-                  )
-                  ),
-        Expanded(child: MinhaLista(carrinho: carrinho)) ,
-        Text("TOTAL: ${valor} REAIS",
-        style:  GoogleFonts.inter(
-                  color:  Color.fromARGB(255, 8, 39, 87),
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  
-                  )),
-                  ButtonBar(
-                    children: [
-                      TextButton(onPressed: () => {
-                         showAlertDialog1(context, valor,),
-                         postCompra(valor, carrinho)
-                         }, child: Text("Finalizar compra")),
+return Scaffold(
+appBar: AppBar(
+title: Text('Carrinho'),
+backgroundColor: Color.fromARGB(255, 8, 39, 87),
+actions: [
 
-                    ],
-                  )
-        
-        
+    SizedBox(width: 30,)
+    
+    ],
+  ),
+  body: Column(children: <Widget>[
+    Text("${widget.carrinho.length > 0? 'ITENS':'Adcione produtos ao seu carrinho'}",
+    textAlign: TextAlign.center, 
+    
+    style:  GoogleFonts.inter(
+              color:  Color.fromARGB(255, 8, 39, 87),
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              
+              )
+              ),
+    Expanded(child: MinhaLista(carrinho: widget.carrinho)) ,
+    Text("TOTAL: ${valor} R\$",
+    style:  GoogleFonts.inter(
+              color:  Color.fromARGB(255, 8, 39, 87),
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              
+              )),
+              ButtonBar(
+                children: [
+                  TextButton(onPressed: () => {
+                     
+                     postCompra(valor, widget.carrinho)
+                     }, child: Text("Finalizar compra")),
 
-      ],
-      mainAxisAlignment: MainAxisAlignment.start,)
-      
-      
+                ],
+              )
+    
+    
 
-        
-      );
-  }
-  postCompra(valor, carrinho) async{
-    var url = Uri.parse('http://localhost:3030/compra');
-    final encoding = Encoding.getByName('utf-8');
-    final headers = <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    };
-    var body = jsonEncode(<String, String>{
-      'usuario' : 'YanApp',
-      'produtos': jsonEncode(carrinho),
-      'valor': '105',
-    });
-    var response = await http.post(url, body: body, encoding: encoding, headers: headers
-    );
-    if(response.statusCode == 200){
-      print("Compra efetuada");
+  ],
+  mainAxisAlignment: MainAxisAlignment.start,)
+  
+  
+
+    
+  );
+}postCompra(valor, carrinho) async{
+    // var url = Uri.parse('http://localhost:3030/compra');
+    // final encoding = Encoding.getByName('utf-8');
+    // final headers = <String, String>{
+    //   'Content-Type': 'application/json; charset=UTF-8',
+    // };
+    // var body = jsonEncode(<String, String>{
+    //   'usuario' : 'YanApp',
+    //   'produtos': jsonEncode(carrinho),
+    //   'valor': '105',
+    // });
+    // var response = await http.post(url, body: body, encoding: encoding, headers: headers
+    // );
+    // if(response.statusCode == 200){
+    //   print("Compra efetuada");
       
       
-    }else{
-      throw Exception('Não foi possivel finalizar a compra');
-    }
+    // }else{
+    //   throw Exception('Não foi possivel finalizar a compra');
+    // }
+    showAlertDialog1(context, valor,);
+    limparLista();
+    
   }
   
   showAlertDialog1(BuildContext context, double valor)

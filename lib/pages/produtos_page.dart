@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+
 import 'package:nodeshop_front/pages/carrinho_page.dart';
 import 'package:nodeshop_front/pages/produtosFiltrados_page.dart';
 import 'package:nodeshop_front/widgets/app_text.dart';
@@ -35,7 +36,7 @@ class ProdutosPage extends StatelessWidget {
         IconButton(onPressed: () => {Navigator.push(context, MaterialPageRoute(
             builder: (context) => CarrinhoPage(carrinho: carrinho, nomeUser: '${nomeUser}',string: nomeUser) ,
           ),)}, icon: const Icon(Icons.shopping_cart)),
-        SizedBox(width: 30,),
+        
         
         
         ],

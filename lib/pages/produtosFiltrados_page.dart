@@ -67,7 +67,7 @@ class ProdutoFiltradoPage extends StatelessWidget {
                   leading: CircleAvatar(backgroundImage: NetworkImage(produto['imagem'])
                   ),
                   title: Text(produto['nome']),
-                  subtitle:  Row(
+                  subtitle:  Row(mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                         Column(
                           children: [
@@ -86,11 +86,12 @@ class ProdutoFiltradoPage extends StatelessWidget {
                                 Text( produto['preco']),
 
                               ],
+                              mainAxisAlignment: MainAxisAlignment.end,
                              
                             )
 
                           ],
-                          
+                          mainAxisAlignment: MainAxisAlignment.end,
                         ),
                        
                       SizedBox(width: 20),
@@ -138,7 +139,7 @@ class ProdutoFiltradoPage extends StatelessWidget {
         ) ,
 
       ],
-      mainAxisAlignment: MainAxisAlignment.start,)
+      mainAxisAlignment: MainAxisAlignment.end,)
       
       
 
@@ -178,47 +179,3 @@ class ProdutoFiltradoPage extends StatelessWidget {
   );
 }
 }
-  
-// }
-// class MinhaLista extends StatelessWidget {
-  
-//   final List<dynamic> produtosFiltrados;
-//   const MinhaLista({super.key, required this.produtosFiltrados });
-
-//   @override
-//   Widget? build(BuildContext context) {
-//     return null;
-//   }
-//   showAlertDialog1(BuildContext context, String nome) 
-// { 
-//     // configura o button
-//   Widget okButton = TextButton(
-//     child: Text("CONTINUAR COMPRANDO"),
-//     onPressed: () { Navigator.of(context).pop(); },
-//   );
-//   Widget irParaCarrinho = TextButton(
-//     child: Text("ir para carrinho"),
-//     onPressed: () { Navigator.push(context, MaterialPageRoute(
-//             builder: (context) => CarrinhoPage(carrinho: carrinho, nomeUser: '${nomeUser}',string: nomeUser) ,
-//           ),); },
-//   );
-//   // configura o  AlertDialog
-//   AlertDialog alerta = AlertDialog(
-//     title: Text("Aviso"),
-//     content: Text("${nome} foi adicionado ao carrinho"),
-//     actions: [
-//       irParaCarrinho,
-//       okButton,
-      
-//     ],
-//   );
-//   // exibe o dialog
-//   showDialog(
-//     context: context,
-//     builder: (BuildContext context) {
-//       return alerta;
-//     },
-//   );
-// }
-  
-// }

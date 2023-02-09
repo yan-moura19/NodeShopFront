@@ -55,4 +55,4 @@ flutter run --web-renderer html
  ![Imagem 2](imagens/Carrinho.png)
  
   ### Imagem 7
- ![Imagem 2](imagens/limpando_carrinho.png)
+ ![Imagem 2](imagens/limpando_carrinho_ok.png)

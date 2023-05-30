@@ -6,6 +6,7 @@
 * 2 - Detalhamento do projeto
 * 3 - Telas
 
+a senha para logar é "admin" pode usar qualquer usuário, adicione os produtos ao carrinho e finalize a compra para salvar no mongoDB. (mais detalhes no tópico 3 do README)
 
 ## 1 - Instalação do projeto
 ### Instalar dependencias do projeto

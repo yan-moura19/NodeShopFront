@@ -83,26 +83,26 @@ actions: [
     
   );
 }postCompra(valor, carrinho) async{
-    // var url = Uri.parse('http://localhost:3030/compra');
-    // final encoding = Encoding.getByName('utf-8');
-    // final headers = <String, String>{
-    //   'Content-Type': 'application/json; charset=UTF-8',
-    // };
-    // var body = jsonEncode(<String, String>{
-    //   'usuario' : 'YanApp',
-    //   'produtos': jsonEncode(carrinho),
-    //   'valor': '105',
-    // });
-    // var response = await http.post(url, body: body, encoding: encoding, headers: headers
-    // );
-    // if(response.statusCode == 200){
-    //   print("Compra efetuada");
+    var url = Uri.parse('http://localhost:3030/compra');
+    final encoding = Encoding.getByName('utf-8');
+    final headers = <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+    var body = jsonEncode(<String, String>{
+      'usuario' : 'YanApp',
+      'produtos': jsonEncode(carrinho),
+      'valor': valor.toString()
+    });
+    var response = await http.post(url, body: body, encoding: encoding, headers: headers
+    );
+    if(response.statusCode == 200){
+      print("Compra efetuada");
+      showAlertDialog1(context, valor,);
       
-      
-    // }else{
-    //   throw Exception('Não foi possivel finalizar a compra');
-    // }
-    showAlertDialog1(context, valor,);
+    }else{
+      throw Exception('Não foi possivel finalizar a compra');
+    }
+    
     limparLista();
     
   }

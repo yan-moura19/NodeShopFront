@@ -1,0 +1,17 @@
+version: "3"
+services:
+  front:
+    image: nodeshopfront
+    ports:
+      - "3000:80"
+  back:
+    image: node:16.14.2-slim
+    environment:
+      - URL_BD=mongodb://bd/compraApp
+      - SERVER_PORT=3030
+    ports:
+      - "5000:5000"
+  bd:
+    image: mongo
+    
+      
